@@ -1,0 +1,14 @@
+{
+  "model":"tf_efficientnetv2_b0.in1k",
+  "folds":3,
+  "epochs":2,
+  "image_size":160,
+  "device":"cpu",
+  "runtime_sec":253.576384306,
+  "cv_weighted_r2":-64.3013863369,
+  "Dry_Green_g":-265.186752858,
+  "Dry_Dead_g":-113.8904976932,
+  "Dry_Clover_g":-18.8858756117,
+  "GDM_g":-73.416032275,
+  "Dry_Total_g":-19.6437345311
+}

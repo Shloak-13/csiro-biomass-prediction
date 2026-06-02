@@ -1,0 +1,13 @@
+model,variant,dim,runtime_sec,status
+dinov2_large,original,1024,0.0,cached
+dinov2_large,canopy,1024,0.0,cached
+dinov2_large,center,1024,0.0,cached
+dinov2_large,highveg,1024,0.0,cached
+siglip_base,original,768,0.0,cached
+siglip_base,canopy,768,0.0,cached
+siglip_base,center,768,0.0,cached
+siglip_base,highveg,768,0.0,cached
+convnextv2_base,original,1024,0.0,cached
+convnextv2_base,canopy,1024,0.0,cached
+convnextv2_base,center,1024,0.0,cached
+convnextv2_base,highveg,1024,0.0,cached

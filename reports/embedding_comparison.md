@@ -1,0 +1,17 @@
+# Embedding Comparison
+
+Subset size requested: 96
+
+## CV Scores
+| embedding   |   subset_n | model           |   cv_weighted_r2 | fold_scores                                                                                               |
+|:------------|-----------:|:----------------|-----------------:|:----------------------------------------------------------------------------------------------------------|
+| dinov2      |         96 | LightGBM_dinov2 |         0.362314 | [0.2732942455125801, 0.4792801540942912, 0.29696140680228733, 0.19153177116255726, 0.3839998655221271]    |
+| dinov2      |         96 | CatBoost_dinov2 |         0.349216 | [0.49389217489380244, 0.3938271728457715, 0.2654498471930098, 0.23126700770060785, 0.38129391723912176]   |
+| clip        |         96 | CatBoost_clip   |         0.262042 | [0.3016562197535979, 0.26249160892805357, 0.11964783950010192, 0.18863599306926687, 0.404383172926746]    |
+| clip        |         96 | LightGBM_clip   |         0.20184  | [0.12229193337554442, 0.2981411249906383, 0.10320034253413396, 0.009538427668738775, 0.31246387696087197] |
+| siglip      |         96 | LightGBM_siglip |         0.351914 | [0.24358694321784338, 0.3983720899640894, 0.199902241098237, 0.37877792653463804, 0.4548007415130895]     |
+| siglip      |         96 | CatBoost_siglip |         0.306291 | [0.3136887088929593, 0.37251646662841487, 0.2658564792593713, 0.2596880788305048, 0.3282210451598283]     |
+
+## Interpretation
+
+DINOv2-small is the best subset embedding model, followed closely by SigLIP. On this 96-image subset, embeddings do not beat metadata-only LightGBM, but they are likely still valuable as ensemble diversity after full-train extraction and metadata fusion.

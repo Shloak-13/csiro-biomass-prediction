@@ -1,0 +1,22 @@
+extends: configs/base.yaml
+fold_strategy: stratified
+features:
+  numeric:
+    - NDVI
+    - Height
+    - sampling_month
+    - sampling_dayofyear
+    - sampling_month_sin
+    - sampling_month_cos
+    - species_count
+    - species_freq
+    - ndvi_x_height
+  categorical:
+    - State
+    - Species
+    - sampling_season
+models:
+  - lightgbm
+  - catboost
+  - xgboost
+  - extra_trees

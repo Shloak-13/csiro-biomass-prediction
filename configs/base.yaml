@@ -1,0 +1,15 @@
+competition: csiro-biomass
+seed: 42
+n_splits: 5
+metric: weighted_log_r2
+targets:
+  Dry_Green_g: 0.1
+  Dry_Dead_g: 0.1
+  Dry_Clover_g: 0.1
+  GDM_g: 0.2
+  Dry_Total_g: 0.5
+paths:
+  data_dir: data
+  report_dir: reports
+  model_dir: models
+  submission_dir: submissions

@@ -1,0 +1,11 @@
+{
+  "mean_error":-0.0008655462,
+  "median_error":0.0,
+  "median_abs_error":0.0,
+  "max_abs_error":0.3088,
+  "correlation_total_vs_component_sum":0.9999998302,
+  "pct_abs_error_le_1e_6":0.862745098,
+  "pct_abs_error_le_1g":1.0,
+  "gdm_median_abs_error":0.0,
+  "gdm_pct_abs_error_le_1g":1.0
+}

@@ -1,0 +1,6 @@
+embedding,model_id,dim,runtime_sec,memory_delta_mb,status
+dinov2_large,facebook/dinov2-large,1024.0,546.9999718666077,369.44921875,ok
+dinov2_giant,facebook/dinov2-giant,,0.0,0.0,skipped_cpu_memory_risk
+siglip_base,google/siglip-base-patch16-224,768.0,144.90958285331726,-22.72265625,ok
+convnextv2_base,convnextv2_base.fcmae_ft_in22k_in1k,1024.0,165.7044608592987,123.41015625,ok
+eva02_base,eva02_base_patch14_448.mim_in22k_ft_in22k_in1k,,0.0,0.0,skipped_cpu_memory_risk
