@@ -1,0 +1,15 @@
+{
+  "id": "validation-user/csiro-validation-multitask-template",
+  "title": "CSIRO Validation Multitask Template",
+  "code_file": "kaggle_multitask_training.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "competition_sources": [
+    "csiro-biomass"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": []
+}

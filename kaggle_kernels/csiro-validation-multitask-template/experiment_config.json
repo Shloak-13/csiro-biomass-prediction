@@ -1,0 +1,13 @@
+{
+  "experiment_name": "validation_multitask_template",
+  "kernel": "validation-user/csiro-validation-multitask-template",
+  "template": "kaggle_multitask_training.ipynb",
+  "created_utc": "2026-06-02T06:41:55.939517+00:00",
+  "git_commit": "80c427d",
+  "expected_outputs": [
+    "submission.csv",
+    "oof_predictions.csv",
+    "training_log.csv",
+    "metrics.json"
+  ]
+}
