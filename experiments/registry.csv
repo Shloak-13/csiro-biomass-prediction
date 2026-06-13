@@ -1,1 +1,2 @@
 experiment_name,kaggle_kernel,git_commit,runtime,CV,LB score,notes
+multitask_ndvi_height_v1,shloakshetty/csiro-multitask-ndvi-height-v1,ee5c2f8,,,,submitted package=D:\csiro\CSIRO-Biomass\kaggle_kernels\csiro-multitask-ndvi-height-v1

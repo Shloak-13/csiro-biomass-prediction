@@ -1,0 +1,20 @@
+{
+  "id": "shloakshetty/csiro-multitask-ndvi-height-v1",
+  "title": "CSIRO Multitask NDVI Height V1",
+  "code_file": "kaggle_multitask_training.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [
+    "shloakshetty/csiro-biomass"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "csiro-biomass"
+  ],
+  "model_sources": []
+}

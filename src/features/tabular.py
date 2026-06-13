@@ -37,12 +37,12 @@ def add_tabular_features(df: pd.DataFrame, fit_stats: dict | None = None) -> tup
             stats["species_freq"] = species_text.value_counts(normalize=True).to_dict()
         out["species_freq"] = species_text.map(stats.get("species_freq", {})).fillna(0)
 
-    if {"NDVI", "Height"}.issubset(out.columns):
-        out["ndvi_x_height"] = out["NDVI"] * out["Height"]
-        out["height_per_ndvi"] = out["Height"] / out["NDVI"].replace(0, np.nan)
+    if {"Pre_GSHH_NDVI", "Height_Ave_cm"}.issubset(out.columns):
+        out["ndvi_x_height"] = out["Pre_GSHH_NDVI"] * out["Height_Ave_cm"]
+        out["height_per_ndvi"] = out["Height_Ave_cm"] / out["Pre_GSHH_NDVI"].replace(0, np.nan)
 
-    if {"NDVI", "sampling_month"}.issubset(out.columns):
-        out["ndvi_x_month"] = out["NDVI"] * out["sampling_month"]
+    if {"Pre_GSHH_NDVI", "sampling_month"}.issubset(out.columns):
+        out["ndvi_x_month"] = out["Pre_GSHH_NDVI"] * out["sampling_month"]
 
     return out, stats
 

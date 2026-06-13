@@ -1,0 +1,20 @@
+{
+  "id": "shloakshetty/csiro-hello-diagnostic",
+  "title": "CSIRO Hello Diagnostic",
+  "code_file": "kaggle_hello_diagnostic.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [],
+  "dataset_sources": [
+    "shloakshetty/csiro-biomass"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "csiro-biomass"
+  ],
+  "model_sources": []
+}

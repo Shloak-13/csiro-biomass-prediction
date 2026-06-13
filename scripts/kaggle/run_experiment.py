@@ -49,6 +49,8 @@ def main() -> None:
     parser.add_argument("--owner", required=True)
     parser.add_argument("--kernel-slug")
     parser.add_argument("--title")
+    parser.add_argument("--dataset-source")
+    parser.add_argument("--competition-source", default="csiro-biomass")
     parser.add_argument("--internet", action="store_true")
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--monitor", action="store_true")
@@ -64,6 +66,8 @@ def main() -> None:
         owner=args.owner,
         title=args.title,
         kernel_slug=args.kernel_slug,
+        dataset_source=args.dataset_source,
+        competition_source=args.competition_source,
         enable_gpu=True,
         enable_internet=args.internet,
         force=args.force,

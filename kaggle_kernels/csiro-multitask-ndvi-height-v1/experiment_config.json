@@ -1,0 +1,15 @@
+{
+  "experiment_name": "multitask_ndvi_height_v1",
+  "kernel": "shloakshetty/csiro-multitask-ndvi-height-v1",
+  "template": "kaggle_multitask_training.ipynb",
+  "dataset_source": null,
+  "competition_source": "csiro-biomass",
+  "created_utc": "2026-06-02T07:22:27.153209+00:00",
+  "git_commit": "ee5c2f8",
+  "expected_outputs": [
+    "submission.csv",
+    "oof_predictions.csv",
+    "training_log.csv",
+    "metrics.json"
+  ]
+}

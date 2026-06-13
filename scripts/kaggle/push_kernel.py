@@ -28,7 +28,8 @@ def push_kernel(package_dir: Path) -> str:
     print(result.stdout, end="")
     if result.stderr:
         print(result.stderr, end="")
-    if result.returncode != 0:
+    output = f"{result.stdout}\n{result.stderr}".lower()
+    if result.returncode != 0 or "kernel push error" in output:
         raise SystemExit(result.returncode)
     return load_kernel_id(package_dir)
 

@@ -91,13 +91,13 @@ cd D:\csiro\CSIRO-Biomass
 Set your Kaggle owner once:
 
 ```powershell
-$env:KAGGLE_USERNAME="your_kaggle_username"
+$env:KAGGLE_USERNAME="shloakshetty"
 ```
 
 Create the kernel package:
 
 ```powershell
-python scripts\kaggle\create_kernel.py --experiment-name multitask_ndvi_height_v1 --template kaggle_multitask_training.ipynb --owner $env:KAGGLE_USERNAME --kernel-slug csiro-multitask-ndvi-height-v1 --title "CSIRO Multitask NDVI Height V1" --internet --force
+python scripts\kaggle\create_kernel.py --experiment-name multitask_ndvi_height_v1 --template kaggle_multitask_training.ipynb --owner $env:KAGGLE_USERNAME --kernel-slug csiro-multitask-ndvi-height-v1 --title "CSIRO Multitask NDVI Height V1" --competition-source csiro-biomass --internet --force
 ```
 
 Push and launch the Kaggle run:
@@ -121,7 +121,7 @@ python scripts\kaggle\download_outputs.py --kernel "$env:KAGGLE_USERNAME/csiro-m
 Single-command orchestration:
 
 ```powershell
-python scripts\kaggle\run_experiment.py --experiment-name multitask_ndvi_height_v1 --template kaggle_multitask_training.ipynb --owner $env:KAGGLE_USERNAME --kernel-slug csiro-multitask-ndvi-height-v1 --title "CSIRO Multitask NDVI Height V1" --internet --force --monitor --download
+python scripts\kaggle\run_experiment.py --experiment-name multitask_ndvi_height_v1 --template kaggle_multitask_training.ipynb --owner $env:KAGGLE_USERNAME --kernel-slug csiro-multitask-ndvi-height-v1 --title "CSIRO Multitask NDVI Height V1" --competition-source csiro-biomass --internet --force --monitor --download
 ```
 
 ## Failure Recovery
@@ -189,7 +189,7 @@ If the first run improves CV:
 Command:
 
 ```powershell
-python scripts\kaggle\run_experiment.py --experiment-name teacher_distillation_v1 --template kaggle_distillation_training.ipynb --owner $env:KAGGLE_USERNAME --kernel-slug csiro-teacher-distillation-v1 --title "CSIRO Teacher Distillation V1" --internet --force --monitor --download
+python scripts\kaggle\run_experiment.py --experiment-name teacher_distillation_v1 --template kaggle_distillation_training.ipynb --owner $env:KAGGLE_USERNAME --kernel-slug csiro-teacher-distillation-v1 --title "CSIRO Teacher Distillation V1" --competition-source csiro-biomass --internet --force --monitor --download
 ```
 
 If the first run does not improve CV:

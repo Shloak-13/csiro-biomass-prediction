@@ -55,6 +55,8 @@ def create_kernel_package(
     owner: str,
     title: str | None,
     kernel_slug: str | None,
+    dataset_source: str | None,
+    competition_source: str,
     enable_gpu: bool,
     enable_internet: bool,
     force: bool,
@@ -85,10 +87,13 @@ def create_kernel_package(
         "kernel_type": "notebook",
         "is_private": True,
         "enable_gpu": enable_gpu,
+        "enable_tpu": False,
         "enable_internet": enable_internet,
-        "competition_sources": ["csiro-biomass"],
-        "dataset_sources": [],
+        "keywords": [],
+        "dataset_sources": [dataset_source or f"{owner}/{competition_source}"],
         "kernel_sources": [],
+        "competition_sources": [competition_source],
+        "model_sources": [],
     }
     (package_dir / "kernel-metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
 
@@ -96,6 +101,8 @@ def create_kernel_package(
         "experiment_name": experiment_name,
         "kernel": kernel_id,
         "template": template,
+        "dataset_source": dataset_source,
+        "competition_source": competition_source,
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "git_commit": git_commit(),
         "expected_outputs": ["submission.csv", "oof_predictions.csv", "training_log.csv", "metrics.json"],
@@ -113,6 +120,8 @@ def main() -> None:
     parser.add_argument("--owner", default=os.environ.get("KAGGLE_USERNAME"))
     parser.add_argument("--kernel-slug")
     parser.add_argument("--title")
+    parser.add_argument("--dataset-source", default=os.environ.get("CSIRO_KAGGLE_DATASET"))
+    parser.add_argument("--competition-source", default=os.environ.get("CSIRO_KAGGLE_COMPETITION", "csiro-biomass"))
     parser.add_argument("--no-gpu", action="store_true")
     parser.add_argument("--internet", action="store_true")
     parser.add_argument("--force", action="store_true")
@@ -127,6 +136,8 @@ def main() -> None:
         owner=args.owner,
         title=args.title,
         kernel_slug=args.kernel_slug,
+        dataset_source=args.dataset_source,
+        competition_source=args.competition_source,
         enable_gpu=not args.no_gpu,
         enable_internet=args.internet,
         force=args.force,

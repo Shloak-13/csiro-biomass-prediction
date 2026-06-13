@@ -21,6 +21,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from tqdm import tqdm
 
+from src.utils.metrics import weighted_log_r2
+
 TARGETS = ["Dry_Green_g", "Dry_Dead_g", "Dry_Clover_g", "GDM_g", "Dry_Total_g"]
 COMPONENT_TARGETS = ["Dry_Green_g", "Dry_Dead_g", "Dry_Clover_g", "GDM_g"]
 WEIGHTS = np.array([0.1, 0.1, 0.1, 0.2, 0.5], dtype=float)
@@ -50,7 +52,8 @@ def memory_mb() -> float:
 
 
 def weighted_r2(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-    return float(sum(w * r2_score(y_true[:, i], y_pred[:, i]) for i, w in enumerate(WEIGHTS)))
+    """Deprecated: use weighted_log_r2 from src.utils.metrics instead (competition uses log-space R2)."""
+    return weighted_log_r2(y_true, y_pred)
 
 
 def target_scores(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:

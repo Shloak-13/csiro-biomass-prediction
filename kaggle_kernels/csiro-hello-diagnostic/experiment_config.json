@@ -1,0 +1,15 @@
+{
+  "experiment_name": "hello_diagnostic",
+  "kernel": "shloakshetty/csiro-hello-diagnostic",
+  "template": "kaggle_hello_diagnostic.ipynb",
+  "dataset_source": null,
+  "competition_source": "csiro-biomass",
+  "created_utc": "2026-06-02T07:32:07.906080+00:00",
+  "git_commit": "ee5c2f8",
+  "expected_outputs": [
+    "submission.csv",
+    "oof_predictions.csv",
+    "training_log.csv",
+    "metrics.json"
+  ]
+}
