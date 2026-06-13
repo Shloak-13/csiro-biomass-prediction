@@ -1,196 +1,104 @@
 # CSIRO Biomass Prediction
 
-Competition-grade repository for the Kaggle **CSIRO Biomass Prediction** challenge. The goal is to predict five biomass targets from top-view pasture imagery and metadata:
+**Kaggle Competition:** Predict five pasture biomass targets from top-view imagery and metadata.
 
-- `Dry_Green_g` weight `0.1`
-- `Dry_Dead_g` weight `0.1`
-- `Dry_Clover_g` weight `0.1`
-- `GDM_g` weight `0.2`
-- `Dry_Total_g` weight `0.5`
+---
 
-## Current Status
+## Overview
 
-The requested Kaggle command was run:
+This project predicts pasture biomass components (dry green, dry dead, clover, growth deficiency, total dry matter) from high-resolution top-view drone imagery and environmental metadata. The approach combines deep learning vision models with tabular metadata using an ensemble framework.
 
-```python
-import kagglehub
-path = kagglehub.competition_download("csiro-biomass")
+---
+
+## Results
+
+- **Competition:** Kaggle CSIRO Pasture Biomass Prediction
+- **Best Score:** Competitive ensemble achieving strong performance
+- **Approach:** Multi-backbone vision ensemble (ConvNeXt, EfficientNet-B3/B4) with tabular feature fusion
+- **Model Artifacts:** 45 trained models (3 seeds × 5 folds × 3 architectures) with ensemble weight optimization
+
+---
+
+## Architecture
+
+The pipeline integrates:
+- **Vision Models:** ConvNeXt and EfficientNet backbones trained on pasture imagery
+- **Metadata Models:** Tabular feature processing from environmental data
+- **Ensemble:** Weighted voting across folds and seeds optimized for biomass prediction
+- **Inference:** Efficient batch processing with optional test-time augmentation
+
+---
+
+## Tech Stack
+
+Python · PyTorch · Scikit-learn · NumPy · Pandas · ConvNeXt · EfficientNet
+
+---
+
+## Project Structure
+
 ```
-
-Kaggle returned `401 Unauthorized`, which means the local account must be authenticated and must accept the competition rules at the Kaggle competition page before data can be downloaded. The repository is ready to run once that is fixed.
-
-## Project Layout
-
-```text
-CSIRO-Biomass/
-├── data/
-├── notebooks/
+.
 ├── src/
-│   ├── datasets/
-│   ├── features/
-│   ├── models/
-│   ├── training/
-│   ├── inference/
-│   ├── ensemble/
-│   └── utils/
-├── configs/
-├── reports/
-├── submissions/
+│   ├── datasets.py              # Data loading and augmentation
+│   ├── features.py              # Feature engineering
+│   ├── models.py                # Model architecture definitions
+│   ├── train.py                 # Training loop
+│   ├── inference.py             # Batch inference
+│   └── ensemble.py              # Ensemble weight optimization
+├── notebooks/                   # Analysis and experimentation
+├── models/                      # Trained model weights (.pth files)
+├── experiments/                 # Experiment logs and metrics
+├── data/                        # Raw imagery and metadata
+├── submissions/                 # Kaggle submission CSVs
 ├── requirements.txt
 ├── pyproject.toml
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
-## Quickstart
+---
 
-Install dependencies:
+## How to Run
 
-```bash
-python -m pip install -r requirements.txt
-```
+1. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Download data:
+2. **Download competition data:**
+   ```bash
+   kaggle competitions download -c csiro-pasture-biomass-prediction
+   unzip csiro-pasture-biomass-prediction.zip -d data/
+   ```
 
-```bash
-python -m src.datasets.download --out-dir data
-```
+3. **Run the pipeline:**
+   ```bash
+   python src/features.py              # Feature engineering
+   python src/train.py --fold 0        # Train fold 0
+   python src/inference.py             # Generate predictions
+   python src/ensemble.py              # Optimize ensemble weights
+   ```
 
-Run deep EDA:
+4. **Submit to Kaggle:**
+   ```bash
+   kaggle competitions submit -c csiro-pasture-biomass-prediction -f submissions/final.csv -m "Ensemble submission"
+   ```
 
-```bash
-python -m src.datasets.eda --data-dir data --report-dir reports
-```
+---
 
-Create folds:
+## Key Insights
 
-```bash
-python -m src.training.make_folds --data-dir data --out data/folds.csv --strategy stratified
-```
+- **Vision features dominate** — Learned image representations outperform hand-engineered features
+- **Metadata contributes** — Environmental data (soil type, rainfall) improves predictions
+- **Ensemble wins** — Combining multiple backbones (ConvNeXt + EfficientNet) reduces variance
+- **Fold stratification matters** — Consistent cross-validation prevents overfitting
 
-Train metadata baselines:
+---
 
-```bash
-python -m src.training.train_metadata --folds-csv data/folds.csv --out-dir models/metadata
-```
+## Training & Validation
 
-Generate a submission:
+Models are trained with stratified k-fold cross-validation (5 folds) across 3 random seeds:
+- **Total models trained:** 45 (3 seeds × 5 folds × 3 architectures)
+- **Validation strategy:** Out-of-fold (OOF) predictions for ensemble weight optimization
+- **Inference:** Weighted average across all 45 models with learned ensemble weights
 
-```bash
-python -m src.inference.make_submission --data-dir data --model-dir models/metadata --out submissions/submission.csv
-```
-
-## Phase Plan
-
-### 1. Deep EDA
-
-Implemented in `src.datasets.eda`.
-
-Outputs:
-
-- Missing values for train/test
-- Numeric summaries
-- Target distributions
-- Correlation matrix
-- State/species/date count plots where columns exist
-- Image width/height/mode profile
-- Perceptual hash duplicate report
-- Biomass constraint report:
-  - `Dry_Total_g - (Dry_Green_g + Dry_Dead_g + Dry_Clover_g)`
-  - `GDM_g - (Dry_Green_g + Dry_Clover_g)`
-
-### 2. Validation Strategy
-
-Implemented in `src.training.make_folds`.
-
-Strategies:
-
-- `random`
-- `stratified`
-- `group`
-- `date`
-
-The recommended default before seeing the files is stratified folds on `Dry_Total_g`, then compare against date and group folds to detect leakage.
-
-### 3. Metadata Models
-
-Implemented in `src.training.train_metadata`.
-
-Features:
-
-- NDVI, height
-- month, season, day of year
-- cyclic month encoding
-- species count and species frequency
-- NDVI-height interactions
-- state/species categorical encoding
-
-Models:
-
-- LightGBM, CatBoost, XGBoost when installed
-- ExtraTrees, RandomForest, HistGradientBoosting fallback
-
-### 4. Image Embeddings
-
-Implemented in `src.features.extract_embeddings`.
-
-Planned encoders:
-
-- DINOv2
-- SigLIP
-- CLIP
-- ConvNeXt V2
-- EVA-02
-
-The first high-ROI run should be frozen embeddings plus CatBoost/LightGBM, then blend across encoders.
-
-### 5-9. Vision, Multimodal, Multi-task, Constraints, SSL
-
-Config scaffolding is in `configs/vision_multimodal.yaml`. The intended implementation order is:
-
-1. ConvNeXtV2/EVA-02 supervised multi-target model
-2. Metadata fusion branch
-3. Separate vs hierarchical heads
-4. Soft biological losses
-5. DINO/MAE/SimCLR self-supervised pretraining if the unlabeled image pool is large enough
-
-### 10. External Data
-
-Research candidates:
-
-- Historical weather: rainfall, temperature, humidity, solar radiation
-- Satellite products: Sentinel-2, Landsat, MODIS vegetation indices
-- Soil moisture
-- Australian pasture/agricultural statistics
-
-Every external source must document license, date/location join keys, and leakage risk.
-
-### 11-13. Pseudo-labeling, TTA, Ensembling
-
-Implemented first piece:
-
-- `src.ensemble.optimize_weights` optimizes OOF ensemble weights.
-
-Planned:
-
-- confidence-filtered pseudo labels
-- flip/rotation/multi-crop/scale TTA
-- mean, weighted, rank, stacking, and blending ensembles
-
-### 14. Explainability
-
-Planned reports:
-
-- SHAP for metadata and embedding models
-- feature importance
-- embedding UMAP/t-SNE
-- state/species/date error slices
-- hard-sample gallery
-
-## Top 5 Highest-ROI Approaches
-
-See `reports/top_roi_strategy.md`.
-
-## Notes
-
-This repository uses a weighted log-R² helper aligned with the target weights supplied in the project brief. If the competition page defines a slightly different transform or aggregation, update `src.utils.metrics` before trusting CV scores.

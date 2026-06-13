@@ -1,25 +1,42 @@
-data/
-outputs/
+# Data files (keep locally, don't commit)
+data/raw/
+data/processed/
+*.zip
+
+# Model weights (large, keep locally)
 models/
-wandb/
-mlruns/
-*.ckpt
 *.pth
 *.pt
-*.pkl
-*.joblib
+
+# Experiments and outputs (large, keep locally)
+experiments/
+submissions/
+output/
+*.csv
+
+# Python
 __pycache__/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.venv/
+*.py[cod]
 *.egg-info/
-.env
-.kaggle/
-submissions/*.csv
-!submissions/.gitkeep
-reports/figures/*.png
-reports/figures/*.jpg
-reports/figures/*.jpeg
-reports/figures/*.webp
-!reports/figures/.gitkeep
+dist/
+build/
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+*.cache
+embedding_cache*/
