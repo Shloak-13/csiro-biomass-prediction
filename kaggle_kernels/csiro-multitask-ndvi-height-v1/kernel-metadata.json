@@ -10,11 +10,8 @@
   "enable_internet": true,
   "keywords": [],
   "dataset_sources": [
-    "shloakshetty/csiro-biomass"
+    "shloakshetty/csiro-biomass-prediction-training-data"
   ],
   "kernel_sources": [],
-  "competition_sources": [
-    "csiro-biomass"
-  ],
   "model_sources": []
 }
