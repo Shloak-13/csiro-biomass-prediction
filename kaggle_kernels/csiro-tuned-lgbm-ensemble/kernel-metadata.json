@@ -1,0 +1,17 @@
+{
+  "id": "shloakshetty/csiro-tuned-lgbm-ensemble",
+  "title": "CSIRO Tuned LightGBM + XGBoost Ensemble",
+  "code_file": "csiro_tuned_ensemble.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": ["agriculture", "biomass", "lightgbm", "xgboost", "ensemble", "optuna"],
+  "dataset_sources": [
+    "shloakshetty/csiro-biomass-data"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}
