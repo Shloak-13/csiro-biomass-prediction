@@ -1,2 +1,9 @@
-experiment_name,kaggle_kernel,git_commit,runtime,CV,LB score,notes
-multitask_ndvi_height_v1,shloakshetty/csiro-multitask-ndvi-height-v1,ee5c2f8,,,,submitted package=D:\csiro\CSIRO-Biomass\kaggle_kernels\csiro-multitask-ndvi-height-v1
+experiment_name,kaggle_kernel,git_commit,runtime,CV,LB_public,LB_private,notes
+csiro_notebookfinal_v1,shloakshetty/csiro-notebookfinal,,,0.21417,0.21417,0.24522,Best competition submission — Jan 28 2026 (deadline day). Scored before daily limit hit.
+csiro_notebookfinal_v2,shloakshetty/csiro-notebookfinal,,,,,,"Post-deadline submission (Jan 28 after limit). No score returned."
+tuned_lgbm_xgboost_ensemble_v1,shloakshetty/csiro-tuned-lightgbm-xgboost-ensemble,,,,,,Jun 16–17 2026 post-competition run. Kernel completed; no score (competition closed Jan 28 2026).
+multitask_ndvi_height_v1,shloakshetty/csiro-multitask-ndvi-height-v1,ee5c2f8,,,,,FAILED — FileNotFoundError: wrong dataset slug (csiro-biomass-prediction-training-data vs csiro-biomass-data). Fixed in 8191bb8.
+metadata_lightgbm_local,,8191bb8,,0.711,,,Local CV after bug fixes. Metadata-only LightGBM with correct column names (Pre_GSHH_NDVI / Height_Ave_cm) and log-R2 metric.
+metadata_catboost_local,,8191bb8,,0.668,,,Local CV CatBoost metadata-only post bug-fix.
+embedding_dinov2_xgboost_local,,8191bb8,,0.556,,,Local CV DINOv2-large + XGBoost embeddings-only. Confirms vision alone lags metadata.
+multimodal_dinov2_xgboost_local,,8191bb8,,0.677,,,Local CV metadata + DINOv2 fused. Negative delta vs metadata-only (-0.039).

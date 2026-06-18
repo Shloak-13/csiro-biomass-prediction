@@ -1,0 +1,31 @@
+{
+  "id": "shloakshetty/csiro-biomass-data",
+  "title": "CSIRO Biomass Prediction - Training Data",
+  "subtitle": "Complete training and test data for the CSIRO Image2Biomass Kaggle competition",
+  "description": "Training data with 357 drone images and biomass measurements. Includes test data with single diagnostic image.",
+  "isPrivate": false,
+  "keywords": ["agriculture", "biomass", "imagery", "computer-vision"],
+  "licenses": [
+    {
+      "name": "CC0-1.0"
+    }
+  ],
+  "resources": [
+    {
+      "path": "train.csv",
+      "description": "Training data - 1785 rows (357 images × 5 targets)"
+    },
+    {
+      "path": "test.csv",
+      "description": "Test data - 5 rows (1 diagnostic image × 5 targets)"
+    },
+    {
+      "path": "train/",
+      "description": "Training images (357 JPEGs, ~2000×1000px each)"
+    },
+    {
+      "path": "test/",
+      "description": "Test images (1 JPEG for diagnostics)"
+    }
+  ]
+}
