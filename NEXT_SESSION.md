@@ -18,14 +18,14 @@
 ## Blockers & Open Questions
 - Kaggle notebook may fail if `DATA_DIR = /kaggle/input/csiro-biomass-data/` doesn't match the actual mounted competition path — check the left sidebar in the Kaggle editor for the real folder name
 - Leaderboard score unknown — kernel was still running at end of session
-- `end-day` / `start-day` skills registered but showing only "2 skills" after `/reload-plugins` — may need a Claude Code restart to pick up local plugins
+- `end-day` / `start-day` skills registered but showing only "2 skills" after `/reload-plugins` — may need an IDE restart to pick up local plugins
 
 ## TODO for Next Session (Prioritized)
 1. Check Kaggle kernel result — did it finish? Did it error on DATA_DIR?
 2. If errored: fix `DATA_DIR` in `csiro_tuned_ensemble.ipynb` to match actual competition path, re-run, submit
 3. If succeeded: note the leaderboard score and compare to CV (0.7529)
 4. Push `data/csiro-biomass/dataset-metadata.json` and `kaggle_outputs/` to GitHub if worth keeping
-5. Verify `end-day` / `start-day` skills load correctly (try restarting Claude Code)
+5. Verify `end-day` / `start-day` skills load correctly (try restarting the IDE)
 
 ## Next Session Kickoff
 **Objective:** Get a scored leaderboard submission on the CSIRO biomass competition.
